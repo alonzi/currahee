@@ -40,6 +40,7 @@ def main():
         # mission while loop (heavy interactive)
         ### while loop on cl_round (ends on overrun, objective win, retreat)
         active_campaign.active_company.LT -=1
+        input("...LT lost ... continue...")
         
         # mission debriefing
         active_mission.__del__() # doption to continue - more challenge more loot

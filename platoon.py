@@ -12,7 +12,7 @@ class cl_platoon(sq.cl_squad):
 
     def muster(self):
         print("\n make a squad ") # use squad constructor
-        return squads
+        return 1
 
     def isAlive(self):
         if self.LT<=0 or self.SGT<=0 or self.PVT<=0: return 0
