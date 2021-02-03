@@ -3,4 +3,5 @@ The repository contains the source code for a simulation video game. The player 
 
 ## license - CC BY-NC-SA 4.0
 [See LICENSE file](https://github.com/alonzi/currahee/blob/main/LICENSE)
-![](https://github.com/alonzi/currahee/blob/main/images/Cc-by-nc-sa.png =100x)
+
+![](https://github.com/alonzi/currahee/blob/main/images/Cc-by-nc-sa.png)
