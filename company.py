@@ -12,12 +12,9 @@ class cl_company(pl.cl_platoon):
 
     #kind = 'canine'         # class variable shared by all instances
     def muster(self):
-        platoons = []
-        for i in range(self.LT): platoons.append(pl.cl_platoon(i)) # create platoons
+        print("\n make a platoon") # use platoon constructor
         return platoons
-        
-        # create squads 
-    
+            
     def __init__(self, name="ALONZI"):
         self.LT = 3
         self.SGT = 9

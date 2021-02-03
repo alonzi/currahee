@@ -23,23 +23,26 @@ def main():
     active_campaign = cm.cl_campaign()
 
     while(active_campaign.active_company.isAlive()):
-        # company configuration (scoreboard) loadout
+
+        # company status report
         active_campaign.active_company.soundOff()
         active_campaign.active_company.materielReport()
         input("...continue...")
     
-        # run mission
-        active_mission = mi.cl_mission() # briefing
+        # mission briefing
+        active_mission = mi.cl_mission()
         input("...continue...")
             
-        # deployment orders
-        platoons = active_campaign.active_company.muster()
-        print(platoons)
+        # company muster (loadout) (heavy interactive)
+        active_campaign.active_company.muster() # create platoons and squads
+        input("...continue...")
         
+        # mission while loop (heavy interactive)
         ### while loop on cl_round (ends on overrun, objective win, retreat)
         active_campaign.active_company.LT -=1
         
-        active_mission.__del__() # debriefing / option to continue - more challenge more loot
+        # mission debriefing
+        active_mission.__del__() # doption to continue - more challenge more loot
         input("...continue...")
 
     # campaign debriefing (campaign destructor)
