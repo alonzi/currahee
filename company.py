@@ -1,18 +1,32 @@
 """
 github.com/alonzi (datascientist@virginia.edu)
-class definition for the campaign
+class definition for the company
 2021-02-03
 github.com/alonzi/currahee
 this class is the game state for the player's company
 """
 
-class cl_company:
+import platoon as pl
+
+class cl_company(pl.cl_platoon):
 
     #kind = 'canine'         # class variable shared by all instances
-    def soundOff(self): print("currahee!")
-
+    def muster(self):
+        platoons = []
+        for i in range(self.LT): platoons.append(pl.cl_platoon(i)) # create platoons
+        return platoons
+        
+        # create squads 
+    
     def __init__(self, name="ALONZI"):
+        self.LT = 3
+        self.SGT = 9
+        self.PVT = 108
+
+        self.ammo = 5
+        self.hammo = 2
+        self.radio = 3
+
         self.name = str(name)    # instance variable unique to each instance
         print("\n----> Your company is {}'s raiders.".format(name))
-
-    
+        

@@ -21,16 +21,26 @@ def main():
 
     #create campaign
     active_campaign = cm.cl_campaign()
-    active_campaign.active_company.soundOff()
 
-    # company configuration (scoreboard)
+    while(active_campaign.active_company.isAlive()):
+        # company configuration (scoreboard) loadout
+        active_campaign.active_company.soundOff()
+        active_campaign.active_company.materielReport()
+        input("...continue...")
     
-    # run mission
-          ## mission briefing from Battalion CO
-          ## deployment orders
-          ### while loop on cl_round (ends on overrun, objective win, retreat)
-          ## option to continue - more challenge more loot
-          ## mission debrief from Battalion CO
+        # run mission
+        active_mission = mi.cl_mission() # briefing
+        input("...continue...")
+            
+        # deployment orders
+        platoons = active_campaign.active_company.muster()
+        print(platoons)
+        
+        ### while loop on cl_round (ends on overrun, objective win, retreat)
+        active_campaign.active_company.LT -=1
+        
+        active_mission.__del__() # debriefing / option to continue - more challenge more loot
+        input("...continue...")
 
     # campaign debriefing (campaign destructor)
 
@@ -38,8 +48,3 @@ def main():
 if __name__ == "__main__":
     """ This is executed when run from the command line """
     main()
-
-        
-        # loadout
-
-        

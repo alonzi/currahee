@@ -18,5 +18,8 @@ class cl_campaign:
         print("\n--> Hello Captain {}.".format(name))
         self.active_company = co.cl_company(name)
 
+    def __del__(self):
+        # campaign debrief
+        print("\n----> Campaign Over {}.".format(self.name))
 
         
