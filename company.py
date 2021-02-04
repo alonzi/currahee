@@ -11,18 +11,45 @@ import squad as sq
 
 class cl_company(pl.cl_platoon):
 
+    def choosePlatoon(self):
+        return self.platoons[0]
+
+    def distributeMateriel(self):
+        for i in range(self.ammo):
+            print("ammo to distribute {}".format(self.ammo))
+            self.choosePlatoon().assign_ammo(1)
+            self.ammo-=1
+        for i in range(self.hammo):
+            print("hammo to distribute {}".format(self.hammo))
+            self.choosePlatoon().assign_hammo(1)
+            self.hammo-=1
+        for i in range(self.radio):
+            print("radio to distribute {}".format(self.radio))
+            self.choosePlatoon().assign_radio(1)
+            self.radio-=1
+        self.soundOff()
+        return 1
+    
     def soundOff(self): 
-        print("COMPANY {} CURRAHEE! STRENGTH {}".format(self,self.PVT))
+        super(cl_company, self).soundOff()
         for platoon in self.platoons: platoon.soundOff()
+        return 1
+
+#    def materielReport(self):
+#        print("AMMO {}, HAMMO {}, RADIO {}".format(self.ammo,self.hammo,self.radio))
+#        return 1
 
     def isAlive(self):
-        if self.LT<=0 or self.SGT<=0 or self.PVT<=0: return 0
-        else: return 1
+        if self.LT<=0 or self.SGT<=0 or self.PVT<=0: return False
+        else: return True
 
     def muster(self):
         
         for platoon in self.platoons: platoon.__del__()
         for squad in self.squads: squad.__del__()
+
+        self.platoons = []
+        self.squads = []
 
         for i in range(self.SGT): self.squads.append(sq.cl_squad(PVT=self.PVT//self.SGT))
         for i in range(self.LT): self.platoons.append(pl.cl_platoon())
@@ -31,6 +58,8 @@ class cl_company(pl.cl_platoon):
             for platoon in self.platoons:
                 if len(self.squads)<=0:break
                 platoon.assign_squad(self.squads.pop())
+    
+        self.soundOff()
         return 1
             
     def __init__(self, name="ALONZI"):

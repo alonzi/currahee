@@ -12,8 +12,10 @@ class cl_squad:
         if self.SGT<=0 or self.PVT<=0: return 0
         else: return 1
    
-    def soundOff(self): 
-        print("            SQUAD {} CURRAHEE! STRENGTH {}".format(self,self.PVT))
+    def soundOff(self):
+        sound = "------> {} CURRAHEE!".format(self)
+        status = " {} {} {} {} {} {}".format(self.LT,self.SGT,self.PVT,self.ammo,self.hammo,self.radio) 
+        print(sound+status)
 
     def materielReport(self):
         print("")
@@ -24,6 +26,7 @@ class cl_squad:
 
 
     def __init__(self, name="ALONZI",PVT=1):
+        self.LT = 0
         self.SGT = 1
         self.PVT = PVT
 

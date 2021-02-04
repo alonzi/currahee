@@ -11,9 +11,22 @@ import squad as sq
 class cl_platoon(sq.cl_squad):
 
     def soundOff(self): 
-        print("      PLATOON {} CURRAHEE! STRENGTH {}".format(self,self.PVT))
+        super(cl_platoon, self).soundOff()
         for squad in self.squads: squad.soundOff()
-
+        return True
+        
+    def assign_ammo(self,x):
+        self.ammo+=x
+        return True
+        
+    def assign_hammo(self,x):
+        self.hammo+=x
+        return True
+        
+    def assign_radio(self,x):
+        self.radio+=x
+        return True
+        
     def assign_squad(self,squad):
         # add in something to catch a null squad
         self.squads.append(squad)
