@@ -13,8 +13,7 @@ class cl_squad:
         else: return 1
    
     def soundOff(self): 
-        print("{} CURRAHEE!".format(self.PVT))
-        print("{} CURRAHEE!".format(self.PVT))
+        print("            SQUAD {} CURRAHEE! STRENGTH {}".format(self,self.PVT))
 
     def materielReport(self):
         print("")
@@ -24,9 +23,9 @@ class cl_squad:
         print("")
 
 
-    def __init__(self, name="ALONZI"):
-        self.SGT = 0
-        self.PVT = 0
+    def __init__(self, name="ALONZI",PVT=1):
+        self.SGT = 1
+        self.PVT = PVT
 
         self.ammo = 0
         self.hammo = 0
@@ -34,4 +33,9 @@ class cl_squad:
 
         self.name = str(name)    # instance variable unique to each instance
         print("\n----> Your squad is {}'s raiders.".format(name))
+
+    def __del__(self):
+        # debrief from Battalion CO
+        print("\n----> delete squad {}.".format(self.name))
+
         

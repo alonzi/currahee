@@ -35,6 +35,7 @@ def main():
             
         # company muster (loadout) (heavy interactive)
         active_campaign.active_company.muster() # create platoons and squads
+        active_campaign.active_company.soundOff()
         input("...continue...")
         
         # mission while loop (heavy interactive)
