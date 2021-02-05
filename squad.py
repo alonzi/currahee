@@ -14,7 +14,7 @@ class cl_squad:
    
     def soundOff(self):
         sound = "------> {} CURRAHEE!".format(self)
-        status = " {} {} {} {} {} {}".format(self.LT,self.SGT,self.PVT,self.ammo,self.hammo,self.radio) 
+        status = " {} {} {} {} {} {} {}".format(self.LT,self.SGT,self.PVT,self.ammo,self.hammo,self.radio,self.orders) 
         print(sound+status)
 
     def materielReport(self):
@@ -33,6 +33,8 @@ class cl_squad:
         self.ammo = 0
         self.hammo = 0
         self.radio = 0
+
+        self.orders = []
 
         self.name = str(name)    # instance variable unique to each instance
         print("\n----> Your squad is {}'s raiders.".format(name))

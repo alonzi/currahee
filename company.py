@@ -11,6 +11,12 @@ import squad as sq
 
 class cl_company(pl.cl_platoon):
 
+    def issueOrders(self):
+        for platoon in self.platoons:
+            platoon.soundOff()
+            platoon.setOrders(platoon.chooseOrders())
+        return True
+
     def choosePlatoon(self):
         return self.platoons[0]
 
@@ -73,6 +79,8 @@ class cl_company(pl.cl_platoon):
 
         self.platoons = []
         self.squads = []
+
+        self.orders = []
 
         self.name = str(name)    # instance variable unique to each instance
         print("\n----> Your company is {}'s raiders.".format(name))

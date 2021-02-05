@@ -12,7 +12,6 @@ __license__ = "see repo LICENSE"
 
 import campaign as cm
 import mission as mi
-import company as co
 
 def main():
     """ Main entry point of the app """
@@ -22,26 +21,30 @@ def main():
     active_campaign = cm.cl_campaign()
 
     while(active_campaign.active_company.isAlive()):
-
-        # company status report
-        #active_campaign.active_company.soundOff()
-        #active_campaign.active_company.materielReport()
-        #input("...continue...")
     
-        # mission briefing
-        active_mission = mi.cl_mission()
+        # mission briefing (batallion level - receive orders)
+        active_mission = mi.cl_mission(active_campaign.active_company)
         input("...continue...")
             
-        # company muster and loadout (heavy interactive)
+        # mission briefing (company level - give orders)
+        # company muster (heavy interactive)
         active_campaign.active_company.muster() # create platoons and squads
         input("...continue...")
+        # company distribute materiel (heavy interactive)
         active_campaign.active_company.distributeMateriel()
         input("...continue...")
-        
+        # company mission orders
+        active_campaign.active_company.issueOrders()
+        input("...continue...")
+        # final sound off
+        active_campaign.active_company.soundOff()
+        input("...MOVE OUT!...")
+
         # mission while loop (heavy interactive)
-        ### while loop on cl_round (ends on overrun, objective win, retreat)
-        active_campaign.active_company.LT -=1
-        input("...LT lost ... continue...")
+        while(active_campaign.active_company.isAlive()):
+            ### while loop on cl_round (ends on overrun, objective win, retreat)
+            active_campaign.active_company.LT -=1
+            input("...LT lost ... continue...")
         
         # mission debriefing
         active_mission.__del__() # doption to continue - more challenge more loot

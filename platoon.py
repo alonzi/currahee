@@ -10,6 +10,16 @@ import squad as sq
 
 class cl_platoon(sq.cl_squad):
 
+    def chooseOrders(self):
+        return input("...give orders --> ")
+
+    def setOrders(self,orders):
+        self.orders = orders
+        return True
+
+    def issueOrders(self):
+        return True
+
     def soundOff(self): 
         super(cl_platoon, self).soundOff()
         for squad in self.squads: squad.soundOff()
@@ -46,6 +56,8 @@ class cl_platoon(sq.cl_squad):
         self.ammo = 0
         self.hammo = 0
         self.radio = 0
+
+        self.orders = []
 
         self.squads = []
 
