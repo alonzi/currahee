@@ -18,6 +18,7 @@ import mission as mi
 
 import random
 
+import chess
 
 def main():
     """ Main entry point of the app """
@@ -47,23 +48,31 @@ def main():
         active_company.soundOff()
         input("...MOVE OUT!...")
 
+        # create empty battlefield
+        bf = chess.Board(fen=None)
+
         # mission while loop (heavy interactive)
         while(active_company.isAlive()):
+            
+            # build active_squads_friends
             active_squads_friends = []
             for platoon in active_company.platoons: 
                 for squad in platoon.squads:
                     active_squads_friends.append(squad)
+
+            # build active_squads_foes
             active_squads_foes = []
-            for squad in active_mission.enemy_squads: active_squads_foes.append(squad)
+            for squad in active_mission.enemy_squads: 
+                active_squads_foes.append(squad)
             
             ### while loop on cl_round (ends when one side is eliminated/surrender/retreats, nb: you can do your objective and retreat and win)
 
             # show friendly troops on map
-            board_file = active_mission.showFriendlies(active_squads_friends) 
+            bf = active_mission.showFriendlies(active_squads_friends,bf) 
             input("...friendlies shown...")
         
             # reveal enemy squads
-            active_mission.showFoes() 
+            bf = active_mission.showFoes(active_squads_foes,bf) 
             input("...foes shown...")
 
             # execute orders

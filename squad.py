@@ -8,6 +8,10 @@ this class is the state of a squad
 
 class cl_squad:
 
+    def setLocation(self,x,y):
+        self.location = (x,y)
+        return True
+    
     def executeOrders(self):
         return True
 
