@@ -15,9 +15,14 @@ import matplotlib.image as mpimg
 class cl_mission:
 
     def showFriendlies(self,squads):
-        board = chess.Board("8/8/8/8/4N3/8/8/8 w - - 0 1")
-        squares = board.attacks(chess.E4)
-        tmp = chess.svg.board(board, squares=squares, size=350)
+
+        board = chess.Board(fen=None)
+
+        for squad in squads:
+            sq = squad.location[1]*8+squad.location[0]
+            board.set_piece_at(square=sq , piece=chess.Piece(piece_type=chess.PAWN,color=chess.BLACK))
+
+        tmp = chess.svg.board(board,size=350)
         with open("tmp.svg", "w") as text_file:
             print("{}".format(tmp), file=text_file)
         drawing = svg2rlg("tmp.svg")

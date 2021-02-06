@@ -38,7 +38,7 @@ class cl_squad:
         self.radio = 0
 
         self.orders = []
-        self.location = (0,0)
+        self.location = (2,2)
 
         self.name = str(name)    # instance variable unique to each instance
         print("\n----> Your squad is {}'s raiders.".format(name))
