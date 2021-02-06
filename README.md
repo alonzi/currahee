@@ -5,3 +5,9 @@ The repository contains the source code for a simulation video game. The player 
 [See LICENSE file](https://github.com/alonzi/currahee/blob/main/LICENSE)
 
 ![](https://github.com/alonzi/currahee/blob/main/images/Cc-by-nc-sa.png)
+
+
+## notes
+https://python-chess.readthedocs.io/en/latest/svg.html
+https://pypi.org/project/svglib/
+
