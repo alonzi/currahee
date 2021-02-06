@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
 import squad as sq
+import orders as ord
 
 class cl_mission:
 
@@ -50,7 +51,7 @@ class cl_mission:
     def __init__(self,company,type="assault"):
         self.type = str(type)    # instance variable unique to each instance
         print("\n----> Your mission is to {}.".format(self.type))
-        company.setOrders(type)
+        company.setOrders(ord.cl_orders())
 
         # mission briefing from Battalion CO
         # create enemy squads

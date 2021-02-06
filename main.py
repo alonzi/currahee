@@ -69,17 +69,15 @@ def main():
 
             # show friendly troops on map
             bf = active_mission.showFriendlies(active_squads_friends,bf) 
-            input("...friendlies shown...")
-        
+            
             # reveal enemy squads
             bf = active_mission.showFoes(active_squads_foes,bf) 
-            input("...foes shown...")
-
+            
             # execute orders
             active_squads = active_squads_friends+active_squads_foes
             random.shuffle(active_squads)
             for squad in active_squads: 
-                squad.executeOrders() 
+                squad.orders.execute() 
             active_company.LT -=1  # casualty simulation for debugging only
             input("...LT lost ... continue...")
 
@@ -96,6 +94,7 @@ def main():
         input("...continue...")
 
     # campaign debriefing (campaign destructor)
+    active_campaign.__del__()
 
 
 if __name__ == "__main__":

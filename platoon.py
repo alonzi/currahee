@@ -12,14 +12,8 @@ import orders as ord
 class cl_platoon(sq.cl_squad):
 
     def chooseOrders(self):
-        # turn in into loop over list of orders that is build by possibilities
-        print("1. advance")
-        print("2. fall back")
-        print("3. take cover")
-        print("4. supressive fire")
-        print("5. heavy fire")
-        print("6. retreat")
-        return input("... enter orders --> ")
+        orderz = ord.cl_orders()
+        return orderz # a cl_orders object
 
     def setOrders(self,orders):
         self.orders = orders
@@ -65,7 +59,7 @@ class cl_platoon(sq.cl_squad):
         self.hammo = 0
         self.radio = 0
 
-        self.orders = []
+        self.orders = ord.cl_orders()
 
         self.squads = []
 

@@ -8,13 +8,13 @@ this class is the game state for the player's company
 
 import platoon as pl
 import squad as sq
+import orders as ord
 
 class cl_company(pl.cl_platoon):
 
-    def soundOffInFog(self):
-        return True
-
     def issueOrdersInFog(self):
+        ''' calls issueOrders for now, will update to only work for first platoon '''
+        self.issueOrders()
         return True
 
     def issueOrders(self):
@@ -42,6 +42,11 @@ class cl_company(pl.cl_platoon):
         self.soundOff()
         return 1
     
+    def soundOffInFog(self):
+        ''' calls soundOff for now, will update to only work for first platoon '''
+        self.soundOff()
+        return True
+
     def soundOff(self): 
         super(cl_company, self).soundOff()
         for platoon in self.platoons: platoon.soundOff()
@@ -82,7 +87,7 @@ class cl_company(pl.cl_platoon):
         self.platoons = []
         self.squads = []
 
-        self.orders = []
+        self.orders = ord.cl_orders()
 
         self.name = str(name)    # instance variable unique to each instance
         print("\n----> Your company is {}'s raiders.".format(name))
