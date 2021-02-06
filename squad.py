@@ -28,7 +28,7 @@ class cl_squad:
         print("")
 
 
-    def __init__(self, name="ALONZI",PVT=1):
+    def __init__(self, name="ALONZI",PVT=4):
         self.LT = 0
         self.SGT = 1
         self.PVT = PVT
@@ -38,6 +38,7 @@ class cl_squad:
         self.radio = 0
 
         self.orders = []
+        self.location = (0,0)
 
         self.name = str(name)    # instance variable unique to each instance
         print("\n----> Your squad is {}'s raiders.".format(name))

@@ -6,6 +6,9 @@ github.com/alonzi/currahee
 i was sick and watched band of brothers
 """
 
+# requires python3.7 or greater
+# requires random and chess
+
 __author__ = "Peter Alonzi"
 __version__ = "0.1.0"
 __license__ = "see repo LICENSE"
@@ -13,7 +16,8 @@ __license__ = "see repo LICENSE"
 import campaign as cm
 import mission as mi
 
-import random 
+import random
+
 
 def main():
     """ Main entry point of the app """
@@ -55,10 +59,12 @@ def main():
             ### while loop on cl_round (ends when one side is eliminated/surrender/retreats, nb: you can do your objective and retreat and win)
 
             # show friendly troops on map
-            active_mission.showFriendlies() 
-
+            board_file = active_mission.showFriendlies(active_squads_friends) 
+            input("...friendlies shown...")
+        
             # reveal enemy squads
             active_mission.showFoes() 
+            input("...foes shown...")
 
             # execute orders
             active_squads = active_squads_friends+active_squads_foes
