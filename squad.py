@@ -8,6 +8,9 @@ this class is the state of a squad
 
 class cl_squad:
 
+    def executeOrders(self):
+        return True
+
     def isAlive(self):
         if self.SGT<=0 or self.PVT<=0: return 0
         else: return 1

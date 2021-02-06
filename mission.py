@@ -8,7 +8,11 @@ this class is generator of a mission
 
 class cl_mission:
 
-    #kind = 'canine'         # class variable shared by all instances
+    def showFriendlies(self):
+        return True
+
+    def showFoes(self):
+        return True
 
     def __init__(self,company,type="assault"):
         self.type = str(type)    # instance variable unique to each instance
@@ -16,6 +20,8 @@ class cl_mission:
         company.setOrders(type)
 
         # mission briefing from Battalion CO
+        # create enemy squads
+        self.enemy_squads = []
 
     def __del__(self):
         # debrief from Battalion CO

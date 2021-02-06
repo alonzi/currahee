@@ -13,6 +13,8 @@ __license__ = "see repo LICENSE"
 import campaign as cm
 import mission as mi
 
+import random 
+
 def main():
     """ Main entry point of the app """
     print("\n hello world \n")
@@ -43,17 +45,34 @@ def main():
 
         # mission while loop (heavy interactive)
         while(active_company.isAlive()):
+            active_squads = []
+            for platoon in active_company.platoons: 
+                for squad in platoon.squads:
+                    active_squads.append(squad)
+            for squad in active_mission.enemy_squads: active_squads.append(squad)
+            
             ### while loop on cl_round (ends when one side is eliminated/surrender/retreats, nb: you can do your objective and retreat and win)
-            
-            # show troops on map
+
+            # show friendly troops on map
+            active_mission.showFriendlies() 
+
             # reveal enemy squads
+            active_mission.showFoes() 
+
             # execute orders
-            # sound off with fog of war
-            # revise orders
-            # move
-            
-            active_company.LT -=1
+            random.shuffle(active_squads)
+            for squad in active_squads: 
+                squad.executeOrders() 
+            active_company.LT -=1  # casualty simulation for debugging only
             input("...LT lost ... continue...")
+
+            # sound off with fog of war
+            active_company.soundOffInFog()
+
+            # revise orders
+            active_company.issueOrdersInFog()
+
+            
         
         # mission debriefing
         active_mission.__del__() # doption to continue - more challenge more loot

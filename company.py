@@ -11,6 +11,12 @@ import squad as sq
 
 class cl_company(pl.cl_platoon):
 
+    def soundOffInFog(self):
+        return True
+
+    def issueOrdersInFog(self):
+        return True
+
     def issueOrders(self):
         for platoon in self.platoons:
             platoon.soundOff()
