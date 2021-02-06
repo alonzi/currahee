@@ -45,11 +45,12 @@ def main():
 
         # mission while loop (heavy interactive)
         while(active_company.isAlive()):
-            active_squads = []
+            active_squads_friends = []
             for platoon in active_company.platoons: 
                 for squad in platoon.squads:
-                    active_squads.append(squad)
-            for squad in active_mission.enemy_squads: active_squads.append(squad)
+                    active_squads_friends.append(squad)
+            active_squads_foes = []
+            for squad in active_mission.enemy_squads: active_squads_foes.append(squad)
             
             ### while loop on cl_round (ends when one side is eliminated/surrender/retreats, nb: you can do your objective and retreat and win)
 
@@ -60,6 +61,7 @@ def main():
             active_mission.showFoes() 
 
             # execute orders
+            active_squads = active_squads_friends+active_squads_foes
             random.shuffle(active_squads)
             for squad in active_squads: 
                 squad.executeOrders() 
