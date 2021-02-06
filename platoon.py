@@ -7,6 +7,7 @@ this class is the state of a platoon
 """
 
 import squad as sq
+import orders as ord
 
 class cl_platoon(sq.cl_squad):
 
