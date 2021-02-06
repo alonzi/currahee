@@ -18,32 +18,41 @@ def main():
     print("\n hello world \n")
 
     #create campaign
-    active_campaign = cm.cl_campaign()
+    (active_campaign,active_company) = cm.cl_campaign()
 
-    while(active_campaign.active_company.isAlive()):
+    while(active_company.isAlive()):
     
         # mission briefing (batallion level - receive orders)
-        active_mission = mi.cl_mission(active_campaign.active_company)
+        active_mission = mi.cl_mission(active_company)
+        # display 8x8 tactical map now, and show objective
         input("...continue...")
             
         # mission briefing (company level - give orders)
         # company muster (heavy interactive)
-        active_campaign.active_company.muster() # create platoons and squads
+        active_company.muster() # create platoons and squads
         input("...continue...")
         # company distribute materiel (heavy interactive)
-        active_campaign.active_company.distributeMateriel()
+        active_company.distributeMateriel()
         input("...continue...")
-        # company mission orders
-        active_campaign.active_company.issueOrders()
+        # company mission orders (heavy interactive)
+        active_company.issueOrders()
         input("...continue...")
         # final sound off
-        active_campaign.active_company.soundOff()
+        active_company.soundOff()
         input("...MOVE OUT!...")
 
         # mission while loop (heavy interactive)
-        while(active_campaign.active_company.isAlive()):
-            ### while loop on cl_round (ends on overrun, objective win, retreat)
-            active_campaign.active_company.LT -=1
+        while(active_company.isAlive()):
+            ### while loop on cl_round (ends when one side is eliminated/surrender/retreats, nb: you can do your objective and retreat and win)
+            
+            # show troops on map
+            # reveal enemy squads
+            # execute orders
+            # sound off with fog of war
+            # revise orders
+            # move
+            
+            active_company.LT -=1
             input("...LT lost ... continue...")
         
         # mission debriefing

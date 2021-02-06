@@ -41,10 +41,6 @@ class cl_company(pl.cl_platoon):
         for platoon in self.platoons: platoon.soundOff()
         return 1
 
-#    def materielReport(self):
-#        print("AMMO {}, HAMMO {}, RADIO {}".format(self.ammo,self.hammo,self.radio))
-#        return 1
-
     def isAlive(self):
         if self.LT<=0 or self.SGT<=0 or self.PVT<=0: return False
         else: return True
