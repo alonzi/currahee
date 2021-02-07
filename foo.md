@@ -4,3 +4,6 @@ https://python-chess.readthedocs.io/en/latest/core.html#chess.A1
 chess.square_distance(a: chess.Square, b: chess.Square) → int
         #board = chess.Board("8/8/8/8/4N3/8/8/8 w - - 0 1")
         #squares = board.attacks(chess.E4)
+
+
+https://python-chess.readthedocs.io/en/latest/core.html#board
