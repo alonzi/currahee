@@ -16,28 +16,21 @@ import matplotlib.image as mpimg
 import squad as sq
 import orders as ord
 
+import numpy as np
+
 class cl_mission:
 
-    def showFriendlies(self,squads,board):
-        for squad in squads:
-            sq = squad.location[1]*8+squad.location[0]
-            board.set_piece_at(square=sq , piece=chess.Piece(piece_type=chess.PAWN,color=chess.BLACK))
-        tmp = chess.svg.board(board,size=350)
-        with open("tmp.svg", "w") as text_file:
-            print("{}".format(tmp), file=text_file)
-        drawing = svg2rlg("tmp.svg")
-        renderPDF.drawToFile(drawing, "tmp.pdf")
-        renderPM.drawToFile(drawing, "tmp.png", fmt="PNG")
-        img = mpimg.imread("tmp.png")
-        plt.imshow(img)
-        plt.show()
-        return board
+    def addTerrain(self):
+        for j in range(3):
+            for i in range (np.random.randint(1,6)):
+                sq = np.random.randint(64)
+                self.board.set_piece_at(square=sq,piece=chess.Piece(piece_type=chess.ROOK,color=chess.BLACK))
 
-    def showFoes(self,squads,board):
+    def showFriendlies(self,squads):
         for squad in squads:
             sq = squad.location[1]*8+squad.location[0]
-            board.set_piece_at(square=sq , piece=chess.Piece(piece_type=chess.PAWN,color=chess.WHITE))
-        tmp = chess.svg.board(board,size=350)
+            self.board.set_piece_at(square=sq , piece=chess.Piece(piece_type=chess.PAWN,color=chess.BLACK))
+        tmp = chess.svg.board(self.board,size=350)
         with open("tmp.svg", "w") as text_file:
             print("{}".format(tmp), file=text_file)
         drawing = svg2rlg("tmp.svg")
@@ -46,7 +39,22 @@ class cl_mission:
         img = mpimg.imread("tmp.png")
         plt.imshow(img)
         plt.show()
-        return board
+        return True
+
+    def showFoes(self,squads):
+        for squad in squads:
+            sq = squad.location[1]*8+squad.location[0]
+            self.board.set_piece_at(square=sq , piece=chess.Piece(piece_type=chess.PAWN,color=chess.WHITE))
+        tmp = chess.svg.board(self.board,size=350)
+        with open("tmp.svg", "w") as text_file:
+            print("{}".format(tmp), file=text_file)
+        drawing = svg2rlg("tmp.svg")
+        renderPDF.drawToFile(drawing, "tmp.pdf")
+        renderPM.drawToFile(drawing, "tmp.png", fmt="PNG")
+        img = mpimg.imread("tmp.png")
+        plt.imshow(img)
+        plt.show()
+        return True
 
     def __init__(self,company,type="assault"):
         self.type = str(type)    # instance variable unique to each instance
@@ -59,6 +67,14 @@ class cl_mission:
         self.enemy_squads.append(sq.cl_squad(PVT=4))
         for squad in self.enemy_squads:
             squad.setLocation(6,6)
+
+        # create empty battlefield
+        self.board = chess.Board(fen=None)
+
+        # add terrain
+        self.addTerrain()
+
+
 
     def __del__(self):
         # debrief from Battalion CO

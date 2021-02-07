@@ -17,6 +17,6 @@ class cl_campaign:
 
     def __del__(self):
         # campaign debrief
-        print("\n----> Campaign Over {}.".format(self.name))
+        print("\n----> Campaign Over.")
 
         

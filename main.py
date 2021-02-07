@@ -48,9 +48,6 @@ def main():
         active_company.soundOff()
         input("...MOVE OUT!...")
 
-        # create empty battlefield
-        bf = chess.Board(fen=None)
-
         # mission while loop (heavy interactive)
         while(active_company.isAlive()):
             
@@ -67,11 +64,13 @@ def main():
             
             ### while loop on cl_round (ends when one side is eliminated/surrender/retreats, nb: you can do your objective and retreat and win)
 
+            # remove squads from board
+
             # show friendly troops on map
-            bf = active_mission.showFriendlies(active_squads_friends,bf) 
+            active_mission.showFriendlies(active_squads_friends) 
             
             # reveal enemy squads
-            bf = active_mission.showFoes(active_squads_foes,bf) 
+            active_mission.showFoes(active_squads_foes) 
             
             # execute orders
             active_squads = active_squads_friends+active_squads_foes
@@ -94,7 +93,7 @@ def main():
         input("...continue...")
 
     # campaign debriefing (campaign destructor)
-    active_campaign.__del__()
+    #active_campaign.__del__() # bugs saying it wasn't instantiated
 
 
 if __name__ == "__main__":
