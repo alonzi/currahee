@@ -17,8 +17,8 @@ import campaign as cm
 import mission as mi
 
 import random
-
 import chess
+import viz
 
 def main():
     """ Main entry point of the app """
@@ -26,6 +26,11 @@ def main():
 
     #create campaign
     (active_campaign,active_company) = cm.cl_campaign()
+
+    prompt = "Batallion CO: Come in captain, welcome to the regiment. What's  your name?"
+    var2set = "Last Name"
+    active_company.setName(viz.request(prompt,var2set))
+    print(" ---> debug ---> {}".format(active_company.name))
 
     while(active_company.isAlive()):
     

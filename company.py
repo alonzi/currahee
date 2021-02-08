@@ -12,6 +12,10 @@ import orders as ord
 
 class cl_company(pl.cl_platoon):
 
+    def setName(self,name):
+        self.name = name
+        return True
+
     def issueOrdersInFog(self):
         ''' calls issueOrders for now, will update to only work for first platoon '''
         self.issueOrders()
