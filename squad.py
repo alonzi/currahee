@@ -19,6 +19,11 @@ class cl_squad:
         if self.SGT<=0 or self.PVT<=0: return 0
         else: return 1
    
+    def soundOffMessage(self):
+        sound = " {} CURRAHEE!".format(self)
+        status = " {} {} {} {} {} {} {}\n".format(self.LT,self.SGT,self.PVT,self.ammo,self.hammo,self.radio,self.orders.type) 
+        return (sound+status)
+
     def soundOff(self):
         sound = "------> {} CURRAHEE!".format(self)
         status = " {} {} {} {} {} {} {}".format(self.LT,self.SGT,self.PVT,self.ammo,self.hammo,self.radio,self.orders.type) 

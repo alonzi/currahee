@@ -43,13 +43,17 @@ class cl_company(pl.cl_platoon):
             print("radio to distribute {}".format(self.radio))
             self.choosePlatoon().assign_radio(1)
             self.radio-=1
-        self.soundOff()
-        return 1
+        return self.soundOffMessage()
     
     def soundOffInFog(self):
         ''' calls soundOff for now, will update to only work for first platoon '''
         self.soundOff()
         return True
+
+    def soundOffMessage(self): 
+        s = super(cl_company, self).soundOffMessage()
+        for platoon in self.platoons: s+=platoon.soundOffMessage()
+        return s
 
     def soundOff(self): 
         super(cl_company, self).soundOff()
@@ -77,7 +81,7 @@ class cl_company(pl.cl_platoon):
                 platoon.assign_squad(self.squads.pop())
     
         self.soundOff()
-        return 1
+        return self.soundOffMessage()
             
     def __init__(self, name="ALONZI"):
         self.LT = 3

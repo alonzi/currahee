@@ -22,6 +22,11 @@ class cl_platoon(sq.cl_squad):
     def issueOrders(self):
         return True
 
+    def soundOffMessage(self): 
+        s = super(cl_platoon, self).soundOffMessage()
+        for squad in self.squads: s+= squad.soundOffMessage()
+        return s
+
     def soundOff(self): 
         super(cl_platoon, self).soundOff()
         for squad in self.squads: squad.soundOff()

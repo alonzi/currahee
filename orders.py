@@ -13,7 +13,7 @@ class cl_orders:
         print("... ececuting orders ... {}".format(self.type))
         return True
 
-    def __init__(self):
+    def __init__(self,type="fire"):
         ''' on construction player selects orders '''
                 # turn in into loop over list of orders that is build by possibilities
 #        print("1. advance")
@@ -23,7 +23,7 @@ class cl_orders:
 #        print("5. heavy fire")
 #        print("6. retreat")
 
-        self.type = "fire"
+        self.type = type
         print("orders given")
 
     def __del__(self):

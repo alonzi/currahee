@@ -18,6 +18,11 @@ import orders as ord
 
 import numpy as np
 
+import viz
+
+import tkinter as tk
+
+
 class cl_mission:
 
     def addTerrain(self):
@@ -37,8 +42,8 @@ class cl_mission:
         renderPDF.drawToFile(drawing, "tmp.pdf")
         renderPM.drawToFile(drawing, "tmp.png", fmt="PNG")
         img = mpimg.imread("tmp.png")
-        plt.imshow(img)
-        plt.show()
+#        plt.imshow(img)
+#        plt.show()
         return True
 
     def showFoes(self,squads):
@@ -52,27 +57,33 @@ class cl_mission:
         renderPDF.drawToFile(drawing, "tmp.pdf")
         renderPM.drawToFile(drawing, "tmp.png", fmt="PNG")
         img = mpimg.imread("tmp.png")
-        plt.imshow(img)
-        plt.show()
+#        plt.imshow(img)
+#        plt.show()
         return True
 
-    def __init__(self,company,type="assault"):
+    def __init__(self,company,p_viz,type="assault"):
+        self.p_viz=p_viz
         self.type = str(type)    # instance variable unique to each instance
-        print("\n----> Your mission is to {}.".format(self.type))
-        company.setOrders(ord.cl_orders())
+        print("\n----> Your mission is to {} and eliminate the enemy force.".format(self.type))
+        company.setOrders(ord.cl_orders(self.type))
 
         # mission briefing from Battalion CO
         # create enemy squads
         self.enemy_squads = []
-        self.enemy_squads.append(sq.cl_squad(PVT=4))
+        for i in range(np.random.randint(1,10)):
+            self.enemy_squads.append(sq.cl_squad(PVT=4))
         for squad in self.enemy_squads:
-            squad.setLocation(6,6)
+            squad.setLocation(np.random.randint(0,8),np.random.randint(6,8))
 
         # create empty battlefield
         self.board = chess.Board(fen=None)
 
         # add terrain
         self.addTerrain()
+
+        # show briefing map
+        self.showFoes(self.enemy_squads)
+        self.p_viz.showMap("Batallion Briefing")
 
 
 

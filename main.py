@@ -20,32 +20,37 @@ import random
 import chess
 import viz
 
+import tkinter as tk
+
+
 def main():
     """ Main entry point of the app """
     print("\n hello world \n")
+
+    # create the viz class
+    p_viz = viz.cl_viz()    
 
     #create campaign
     (active_campaign,active_company) = cm.cl_campaign()
 
     prompt = "Batallion CO: Come in captain, welcome to the regiment. What's  your name?"
     var2set = "Last Name"
-    active_company.setName(viz.request(prompt,var2set))
-    print(" ---> debug ---> {}".format(active_company.name))
+    active_company.setName(p_viz.request(prompt,var2set))
 
     while(active_company.isAlive()):
     
         # mission briefing (batallion level - receive orders)
-        active_mission = mi.cl_mission(active_company)
-        # display 8x8 tactical map now, and show objective
-        input("...continue...")
+        active_mission = mi.cl_mission(active_company,p_viz)
             
         # mission briefing (company level - give orders)
         # company muster (heavy interactive)
-        active_company.muster() # create platoons and squads
-        input("...continue...")
+        message = active_company.muster() # create platoons and squads
+        p_viz.showMap(message)
+
         # company distribute materiel (heavy interactive)
-        active_company.distributeMateriel()
-        input("...continue...")
+        message = active_company.distributeMateriel()
+        p_viz.showMap(message)
+
         # company mission orders (heavy interactive)
         active_company.issueOrders()
         input("...continue...")
@@ -73,7 +78,9 @@ def main():
 
             # show friendly troops on map
             active_mission.showFriendlies(active_squads_friends) 
-            
+            p_viz.showMap("now with friendlies")
+
+
             # reveal enemy squads
             active_mission.showFoes(active_squads_foes) 
             
