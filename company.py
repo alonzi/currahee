@@ -25,7 +25,7 @@ class cl_company(pl.cl_platoon):
         for platoon in self.platoons:
             platoon.soundOff()
             platoon.setOrders(platoon.chooseOrders())
-        return True
+        return "troops deployed"
 
     def choosePlatoon(self):
         return self.platoons[0]

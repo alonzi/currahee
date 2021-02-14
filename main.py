@@ -45,18 +45,25 @@ def main():
         # mission briefing (company level - give orders)
         # company muster (heavy interactive)
         message = active_company.muster() # create platoons and squads
+        p_viz.setScoreBoard(active_company.LT,active_company.SGT,active_company.PVT)
         p_viz.showMap(message)
 
         # company distribute materiel (heavy interactive)
         message = active_company.distributeMateriel()
+        message = "assign materiel \n"+message
         p_viz.showMap(message)
 
         # company mission orders (heavy interactive)
-        active_company.issueOrders()
-        input("...continue...")
-        # final sound off
-        active_company.soundOff()
-        input("...MOVE OUT!...")
+        for platoon in active_company.platoons:
+            platoon.orders.type = p_viz.showMap("Where to deploy {} ".format(platoon))
+
+
+        ## add friendlies to board - squads assigned auto by their LT
+        # fro platoon in active platton
+            # for suqad in platoon.squads
+                # user orders to pick location on map and assign to bard
+        p_viz.showMap(active_company.soundOffMessage())
+
 
         # mission while loop (heavy interactive)
         while(active_company.isAlive()):
