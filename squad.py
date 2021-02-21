@@ -11,10 +11,10 @@ import orders as ord
 
 class cl_squad:
 
-    def setLocation(self,x,y):
-        self.location = (x,y)
+    def setLocation(self,l):
+        self.location = (l[0],l[1])
         return True
-    
+        
     def isAlive(self):
         if self.SGT<=0 or self.PVT<=0: return 0
         else: return 1

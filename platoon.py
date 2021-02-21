@@ -11,6 +11,18 @@ import orders as ord
 
 class cl_platoon(sq.cl_squad):
 
+    def orderSquad(self):
+        # left 0,1 # center 2,3,4,5 # right 6,7
+        print("debug: {}".format(self.orders.type))
+        if self.orders.type == 'left':
+            x=0
+        elif self.orders.type == 'center':
+            x=2
+        else:
+            x=6
+        y=0
+        return x,y
+
     def chooseOrders(self):
         orderz = ord.cl_orders()
         return orderz # a cl_orders object

@@ -31,6 +31,26 @@ class cl_mission:
                 sq = np.random.randint(64)
                 self.board.set_piece_at(square=sq,piece=chess.Piece(piece_type=chess.ROOK,color=chess.BLACK))
 
+    def addSquadFoe(self,squad):
+        sq = squad.location[1]*8+squad.location[0]
+        self.board.set_piece_at(square=sq , piece=chess.Piece(piece_type=chess.PAWN,color=chess.WHITE))
+        return True
+        
+    def addSquadFriend(self,squad):
+        sq = squad.location[1]*8+squad.location[0]
+        self.board.set_piece_at(square=sq , piece=chess.Piece(piece_type=chess.PAWN,color=chess.BLACK))
+        return True
+        
+    def renderBoard(self):
+        tmp = chess.svg.board(self.board,size=350)
+        with open("tmp.svg", "w") as text_file:
+            print("{}".format(tmp), file=text_file)
+        drawing = svg2rlg("tmp.svg")
+        renderPDF.drawToFile(drawing, "tmp.pdf")
+        renderPM.drawToFile(drawing, "tmp.png", fmt="PNG")
+        img = mpimg.imread("tmp.png")
+        return True
+
     def showFriendlies(self,squads):
         for squad in squads:
             sq = squad.location[1]*8+squad.location[0]
@@ -42,14 +62,13 @@ class cl_mission:
         renderPDF.drawToFile(drawing, "tmp.pdf")
         renderPM.drawToFile(drawing, "tmp.png", fmt="PNG")
         img = mpimg.imread("tmp.png")
-#        plt.imshow(img)
-#        plt.show()
         return True
 
     def showFoes(self,squads):
         for squad in squads:
             sq = squad.location[1]*8+squad.location[0]
             self.board.set_piece_at(square=sq , piece=chess.Piece(piece_type=chess.PAWN,color=chess.WHITE))
+
         tmp = chess.svg.board(self.board,size=350)
         with open("tmp.svg", "w") as text_file:
             print("{}".format(tmp), file=text_file)
@@ -57,8 +76,7 @@ class cl_mission:
         renderPDF.drawToFile(drawing, "tmp.pdf")
         renderPM.drawToFile(drawing, "tmp.png", fmt="PNG")
         img = mpimg.imread("tmp.png")
-#        plt.imshow(img)
-#        plt.show()
+
         return True
 
     def __init__(self,company,p_viz,type="assault"):
@@ -67,22 +85,23 @@ class cl_mission:
         print("\n----> Your mission is to {} and eliminate the enemy force.".format(self.type))
         company.setOrders(ord.cl_orders(self.type))
 
-        # mission briefing from Battalion CO
-        # create enemy squads
-        self.enemy_squads = []
-        for i in range(np.random.randint(1,10)):
-            self.enemy_squads.append(sq.cl_squad(PVT=4))
-        for squad in self.enemy_squads:
-            squad.setLocation(np.random.randint(0,8),np.random.randint(6,8))
-
         # create empty battlefield
         self.board = chess.Board(fen=None)
 
         # add terrain
         self.addTerrain()
 
+        # mission briefing from Battalion CO
+        # create enemy squads
+        self.enemy_squads = []
+        for i in range(np.random.randint(1,10)):
+            self.enemy_squads.append(sq.cl_squad(PVT=4))
+        for squad in self.enemy_squads:
+            squad.setLocation((np.random.randint(0,8),np.random.randint(6,8)))
+            self.addSquadFoe(squad)
+        self.renderBoard()
+
         # show briefing map
-        self.showFoes(self.enemy_squads)
         self.p_viz.showMap("Batallion Briefing")
 
 

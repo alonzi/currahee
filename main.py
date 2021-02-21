@@ -59,10 +59,13 @@ def main():
 
 
         ## add friendlies to board - squads assigned auto by their LT
-        # fro platoon in active platton
-            # for suqad in platoon.squads
-                # user orders to pick location on map and assign to bard
-        p_viz.showMap(active_company.soundOffMessage())
+        for platoon in active_company.platoons:
+            for squad in platoon.squads:
+                squad.setLocation(platoon.orderSquad())
+                active_mission.addSquadFriend(squad)
+                
+        active_mission.renderBoard()
+        p_viz.showMap("should see all squads")#active_company.soundOffMessage())
 
 
         # mission while loop (heavy interactive)
