@@ -5,3 +5,7 @@ This version includes the fully revamed HQ based class structure as well as grap
 * units.py - class definition for a squad, platoonHQ, companyHQ
 * mission.py - class definition for mission level game state
 * ribbons.py - class definition for campaign level game state
+
+# References
+* [Band of Brothers on HBO]()
+* [Airborne Rifle Company Structure -1944](https://www.battleorder.org/us-airborne-ww2)
