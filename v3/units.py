@@ -13,6 +13,8 @@ class Squad():
 
     def identify(self): print(self)
 
+    ### all movement methods go here and are inherited by HQs
+
     def __init__(self,name="default rifle squad",PVT=10):
 
         self.PVT = PVT
