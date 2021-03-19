@@ -1,13 +1,10 @@
 """
 author: github.com/alonzi (datascientist@virginia.edu)
 what: class definition for the campaign state
-when: 2021-03-18
+when: 2021-03-19
 where: github.com/alonzi/currahee
 why: this class contains the information necessary to reconstruct the game state between missions
 inspiration: the old school games like metroid where you would write down the hash for the game state
-
-
-reference: https://www.battleorder.org/us-airborne-ww2
 """
 
 class Ribbons():
@@ -28,4 +25,3 @@ class Ribbons():
 
         self.name = str(name)    # instance variable unique to each instance
         print("\n----> Ribbon rack created: {}, id = {}.".format(name,self))
-
